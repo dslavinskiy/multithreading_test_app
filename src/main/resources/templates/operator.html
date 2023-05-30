@@ -1,0 +1,26 @@
+<div>
+    <h2>Operator <span th:text="${operator.username}"></span></h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Date Created</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="conversation : ${operator.storage}">
+            <td th:text="${conversation.id}"></td>
+            <td th:text="${conversation.createdDate}"></td>
+            <td th:text="${conversation.status}"></td>
+            <td>
+                <span th:if="${#strings.equals('PENDING', conversation.status)}">
+                    <a th:href="@{/operator/{id}/conversation/{conv_id}/approve(id = ${operator.id}, conv_id = ${conversation.id})}" th:text="Approve"></a>
+                    <a th:href="@{/operator/{id}/conversation/{conv_id}/decline(id = ${operator.id}, conv_id = ${conversation.id})}" th:text="Decline"></a>
+                </span>
+            </td>
+        </tr>
+        </tbody>
+        </table>
+</div>
