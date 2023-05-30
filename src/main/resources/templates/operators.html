@@ -1,0 +1,20 @@
+<div th:switch="${operatorsList}">
+    <h2 th:case="null">No operators yet!</h2>
+    <div th:case="*">
+        <h2>Operators</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="operator : ${operatorsList}">
+                <td th:text="${operator.id}"></td>
+                <td><a th:href="@{/operator/{id}(id = ${operator.id})}" th:text="${operator.username}"></a> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
